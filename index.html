@@ -1,47 +1,19 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Mon application Facebook</title>
-    <script
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=1046321149935618&autoLogAppEvents=1"
-        async defer crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Facebook App</title>
 </head>
-
 <body>
-    <h1>Bienvenue sur mon application Facebook</h1>
-    <div id="fb-root"></div>
-    <script>
-        // Initialisation du SDK Facebook
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '1046321149935618',
-                cookie: true,
-                xfbml: true,
-                version: 'v11.0'
-            });
 
-            // Vérification de l'état de connexion de l'utilisateur
-            FB.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    // Récupération des informations de l'utilisateur
-                    FB.api('/me', { fields: 'name,picture' }, function (response) {
-                        console.log(response);
-                        document.getElementById('name').innerText = response.name;
-                        document.getElementById('profile-picture').src = response.picture.data.url;
-                    });
-                }
-            });
-        };
-    </script>
+  <h1>Ma Simple App Facebook</h1>
 
-    <h2>Bienvenue, <span id="name"></span> !</h2>
-    <img id="profile-picture" width="100" height="100" alt="Profil Picture">
+  <!-- Bouton de connexion Facebook -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=VOTRE_ID_D'APPLICATION" nonce="NONCE">
+  </script>
+  <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
 </body>
-
 </html>
