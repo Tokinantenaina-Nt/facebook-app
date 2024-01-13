@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mon application Facebook</title>
+    <script
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=1046321149935618&autoLogAppEvents=1"
+        async defer crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bienvenue sur mon application Facebook</h1>
+    <div id="fb-root"></div>
+    <script>
+        // Initialisation du SDK Facebook
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1046321149935618',
+                cookie: true,
+                xfbml: true,
+                version: 'v11.0'
+            });
+
+            // Vérification de l'état de connexion de l'utilisateur
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    // Récupération des informations de l'utilisateur
+                    FB.api('/me', { fields: 'name,picture' }, function (response) {
+                        console.log(response);
+                        document.getElementById('name').innerText = response.name;
+                        document.getElementById('profile-picture').src = response.picture.data.url;
+                    });
+                }
+            });
+        };
+    </script>
+
+    <h2>Bienvenue, <span id="name"></span> !</h2>
+    <img id="profile-picture" width="100" height="100" alt="Profil Picture">
+</body>
+
+</html>
